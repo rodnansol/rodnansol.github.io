@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Migrations :: Rodnan Sol</title>
+    <link rel="canonical" href="http://rodnansol.org/spring-configuration-property-documenter/latest/migrations.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="http://rodnansol.org">Rodnan Sol</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="spring-configuration-property-documenter" data-version="latest">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Spring Configuration Property Documenter</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Homepage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Plugins / Usage</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="maven-plugin.html">Maven Plugin</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="gradle-plugin.html">Gradle Plugin</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="usage-jbang.html">JBang usage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Customization</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="template-customization.html">Template Customization</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Migration guides</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="migrations.html">Migrations</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Spring Configuration Property Documenter</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="index.html">Spring Configuration Property Documenter</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Spring Configuration Property Documenter</a></li>
+    <li>Migration guides</li>
+    <li><a href="migrations.html">Migrations</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/rodnansol/spring-configuration-property-documenter/edit/master/docs/modules/ROOT/pages/migrations.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Migrations</h1>
+<div class="sect1">
+<h2 id="_0_5_1_0_6_0"><a class="anchor" href="#_0_5_1_0_6_0"></a>0.5.1 &#8594; 0.6.0</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_including_environment_format"><a class="anchor" href="#_including_environment_format"></a>Including environment format</h3>
+<div class="paragraph">
+<p>Header appearance in the tables are now customizable, and to make sure the environment variable is also following the same configuration way the older configuration in the Maven and Gradle plugins are not going to work.</p>
+</div>
+<div class="paragraph">
+<p>A new level of configuration is introduced, it can be configured with the <code>contentCustomization</code> key in Maven and in Gradle.</p>
+</div>
+<div class="sect3">
+<h4 id="_maven"><a class="anchor" href="#_maven"></a>Maven</h4>
+<div class="listingblock">
+<div class="title">Till 0.5.1</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;execution&gt;
+    &lt;id&gt;generate-adoc&lt;/id&gt;
+    &lt;phase&gt;process-classes&lt;/phase&gt;
+    &lt;goals&gt;
+        &lt;goal&gt;generate-property-document&lt;/goal&gt;
+    &lt;/goals&gt;
+    &lt;configuration&gt;
+        &lt;type&gt;TYPE&lt;/type&gt;
+        &lt;asciiDocCustomization&gt;
+            &lt;markdownCustomization&gt;
+                &lt;includeEnvFormat&gt;true&lt;/includeEnvFormat&gt;
+            &lt;/markdownCustomization&gt;
+            &lt;htmlCustomization&gt;
+                &lt;includeEnvFormat&gt;true&lt;/includeEnvFormat&gt;
+            &lt;/htmlCustomization&gt;
+            &lt;xmlCustomization&gt;
+                &lt;includeEnvFormat&gt;true&lt;/includeEnvFormat&gt;
+            &lt;/xmlCustomization&gt;
+            &lt;asciiDocCustomization&gt;
+                &lt;includeEnvFormat&gt;true&lt;/includeEnvFormat&gt;
+            &lt;/asciiDocCustomization&gt;
+        &lt;/asciiDocCustomization&gt;
+    &lt;/configuration&gt;
+&lt;/execution&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">From 0.6.0</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;execution&gt;
+    &lt;id&gt;generate-adoc&lt;/id&gt;
+    &lt;phase&gt;process-classes&lt;/phase&gt;
+    &lt;goals&gt;
+        &lt;goal&gt;generate-property-document&lt;/goal&gt;
+    &lt;/goals&gt;
+    &lt;configuration&gt;
+        &lt;type&gt;TYPE&lt;/type&gt;
+        &lt;asciiDocCustomization&gt;
+            &lt;markdownCustomization&gt;
+                &lt;contentCustomization&gt;
+                    &lt;includeEnvFormat&gt;true&lt;/includeEnvFormat&gt;
+                &lt;/contentCustomization&gt;
+            &lt;/markdownCustomization&gt;
+            &lt;htmlCustomization&gt;
+                &lt;contentCustomization&gt;
+                    &lt;includeEnvFormat&gt;true&lt;/includeEnvFormat&gt;
+                &lt;/contentCustomization&gt;
+            &lt;/htmlCustomization&gt;
+            &lt;xmlCustomization&gt;
+                &lt;contentCustomization&gt;
+                    &lt;includeEnvFormat&gt;true&lt;/includeEnvFormat&gt;
+                &lt;/contentCustomization&gt;
+            &lt;/xmlCustomization&gt;
+            &lt;asciiDocCustomization&gt;
+                &lt;contentCustomization&gt;
+                    &lt;includeEnvFormat&gt;true&lt;/includeEnvFormat&gt;
+                &lt;/contentCustomization&gt;
+            &lt;/asciiDocCustomization&gt;
+        &lt;/asciiDocCustomization&gt;
+    &lt;/configuration&gt;
+&lt;/execution&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_gradle"><a class="anchor" href="#_gradle"></a>Gradle</h4>
+<div class="listingblock">
+<div class="title">Till 0.5.1</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">tasks.register('generateAdoc') {
+    dependsOn generatePropertyDocument {
+        documentName = "Hello World"
+        type = "ADOC"
+        asciiDocCustomization {
+            includeEnvFormat = true
+        }
+    }
+}
+
+tasks.register('generateMarkdown') {
+    dependsOn generatePropertyDocument {
+        documentName = "Hello World"
+        type = "MARKDOWN"
+        markdownCustomization {
+            includeEnvFormat = true
+        }
+    }
+}
+
+tasks.register('generateHtml') {
+    dependsOn generatePropertyDocument {
+        documentName = "Hello World"
+        type = "HTML"
+        htmlCustomization {
+            includeEnvFormat = true
+        }
+    }
+}
+
+tasks.register('generateXml') {
+    dependsOn generatePropertyDocument {
+        documentName = "Hello World"
+        type = "XML"
+        xmlCustomization {
+            includeEnvFormat = true
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">From 0.6.0</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">tasks.register('generateAdoc') {
+    dependsOn generatePropertyDocument {
+        documentName = "Hello World"
+        type = "ADOC"
+        asciiDocCustomization {
+            contentCustomization {
+                includeEnvFormat = true
+            }
+        }
+    }
+}
+
+tasks.register('generateMarkdown') {
+    dependsOn generatePropertyDocument {
+        documentName = "Hello World"
+        type = "MARKDOWN"
+        markdownCustomization {
+            contentCustomization {
+                includeEnvFormat = true
+            }
+        }
+    }
+}
+
+tasks.register('generateHtml') {
+    dependsOn generatePropertyDocument {
+        documentName = "Hello World"
+        type = "HTML"
+        htmlCustomization {
+            contentCustomization {
+                includeEnvFormat = true
+            }
+        }
+    }
+}
+
+tasks.register('generateXml') {
+    dependsOn generatePropertyDocument {
+        documentName = "Hello World"
+        type = "XML"
+        xmlCustomization {
+            contentCustomization {
+                includeEnvFormat = true
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_0_5_0_0_5_1"><a class="anchor" href="#_0_5_0_0_5_1"></a>0.5.0 &#8594; 0.5.1</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>No changes required.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_0_4_0_0_5_0"><a class="anchor" href="#_0_4_0_0_5_0"></a>0.4.0 &#8594; 0.5.0</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>No changes required.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_0_3_0_0_4_0"><a class="anchor" href="#_0_3_0_0_4_0"></a>0.3.0 &#8594; 0.4.0</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>No changes required.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_0_2_4_0_3_0"><a class="anchor" href="#_0_2_4_0_3_0"></a>0.2.4 &#8594; 0.3.0</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>No changes required.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_0_2_3_0_2_4"><a class="anchor" href="#_0_2_3_0_2_4"></a>0.2.3 &#8594; 0.2.4</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>No changes required.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_0_2_2_0_2_3"><a class="anchor" href="#_0_2_2_0_2_3"></a>0.2.2 &#8594; 0.2.3</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>No changes required.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_0_2_1_0_2_2"><a class="anchor" href="#_0_2_1_0_2_2"></a>0.2.1 &#8594; 0.2.2</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>No changes required.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_0_2_0_0_2_1"><a class="anchor" href="#_0_2_0_0_2_1"></a>0.2.0 &#8594; 0.2.1</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>No changes required.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_0_1_1_0_2_0"><a class="anchor" href="#_0_1_1_0_2_0"></a>0.1.1 &#8594; 0.2.0</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>No changes required.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_0_1_0_0_1_1"><a class="anchor" href="#_0_1_0_0_1_1"></a>0.1.0 &#8594; 0.1.1</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>No changes required.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

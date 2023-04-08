@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Gradle Plugin :: Rodnan Sol</title>
+    <link rel="canonical" href="http://rodnansol.org/spring-configuration-property-documenter/latest/gradle-plugin.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="http://rodnansol.org">Rodnan Sol</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="spring-configuration-property-documenter" data-version="latest">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Spring Configuration Property Documenter</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Homepage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Plugins / Usage</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="maven-plugin.html">Maven Plugin</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="gradle-plugin.html">Gradle Plugin</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="usage-jbang.html">JBang usage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Customization</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="template-customization.html">Template Customization</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Migration guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="migrations.html">Migrations</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Spring Configuration Property Documenter</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="index.html">Spring Configuration Property Documenter</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Spring Configuration Property Documenter</a></li>
+    <li>Plugins / Usage</li>
+    <li><a href="gradle-plugin.html">Gradle Plugin</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/rodnansol/spring-configuration-property-documenter/edit/master/docs/modules/ROOT/pages/gradle-plugin.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Gradle Plugin</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="sidebarblock">
+<div class="content">
+With the release of the <strong>0.5.0</strong> version the tool now can be used within Gradle projects as well.
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_available_tasks">Available tasks</a></li>
+<li><a href="#_setup">Setup</a>
+<ul class="sectlevel2">
+<li><a href="#_single_module_single_project">Single module / Single project</a></li>
+<li><a href="#_multi_module_multiple_sub_projects">Multi-module / Multiple sub projects</a></li>
+</ul>
+</li>
+<li><a href="#_available_tasks_and_configurations">Available tasks and configurations</a>
+<ul class="sectlevel2">
+<li><a href="#_configuration">Configuration</a>
+<ul class="sectlevel3">
+<li><a href="#generate-property-document"><code>GeneratePropertyDocumentTask</code></a></li>
+<li><a href="#generate-and-aggregate-documents"><code>GenerateAndAggregateDocumentsTask</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The plugin is built with <strong>Java 11</strong> and <strong>Gradle 6.1.1</strong> API, make sure requirements are met.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The plugin is built like the Maven plugin, it has the same functionalities, but in the Gradle world.</p>
+</div>
+<div class="paragraph">
+<p>In this documentation the usage is being show, and the samples can be checked in the <code>samples/gradle</code> folder from the root.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_available_tasks"><a class="anchor" href="#_available_tasks"></a>Available tasks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin provides the users 2 tasks:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>generatePropertyDocument</code> - Generates a single property document</p>
+</li>
+<li>
+<p><code>generateAndAggregateDocuments</code> - Generates and aggregates documents from different sources (folder, exact file, JAR/ZIP file)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setup"><a class="anchor" href="#_setup"></a>Setup</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_single_module_single_project"><a class="anchor" href="#_single_module_single_project"></a>Single module / Single project</h3>
+<div class="listingblock">
+<div class="title">gradle.build</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">buildscript {
+    repositories {
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'org.rodnansol:spring-configuration-property-documenter-gradle-plugin:&lt;latest-version&gt;' <i class="conum" data-value="1"></i><b>(1)</b>
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.8'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+apply plugin: 'org.rodnansol.spring-configuration-property-documenter' <i class="conum" data-value="2"></i><b>(2)</b>
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor' <i class="conum" data-value="3"></i><b>(3)</b>
+}
+
+
+group 'org.rodnansol.samples.gradle'
+version '999-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+tasks.register('generateAdoc') { <i class="conum" data-value="4"></i><b>(4)</b>
+    dependsOn generatePropertyDocument { <i class="conum" data-value="5"></i><b>(5)</b>
+        documentName = "Single Module" <i class="conum" data-value="6"></i><b>(6)</b>
+        documentDescription = "This is a document about the configuration properties in my application"
+        type = "ADOC" <i class="conum" data-value="7"></i><b>(7)</b>
+        metadataInput = file("build/classes/java/main/META-INF/spring-configuration-metadata.json") <i class="conum" data-value="8"></i><b>(8)</b>
+        outputFile = file("build/config-prop.adoc") <i class="conum" data-value="9"></i><b>(9)</b>
+        excludedProperties = ["properties-to-exclude"]
+        excludedGroups = ["property-groups-to-exclude"]
+        includedProperties = ["properties-to-include"]
+        includedGroups = ["property-groups-to-include"]
+        templateCompilerName = "your-own-template-compiler"
+        asciiDocCustomization { <i class="conum" data-value="10"></i><b>(10)</b>
+            contentCustomization {
+                includeEnvFormat = true
+            }
+            unknownGroupLocalization = "Renamed unknown group"
+            tocLevels = 3
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Define the <code>spring-configuration-property-documenter-gradle-plugin</code> in your buildscript</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Apply the plugin to make sure the tasks will be available</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Add the <code>org.springframework.boot:spring-boot-configuration-processor</code> to the dependencies to make sure the <code>spring-configuration-metadata.json</code> file wil be generated.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Register an alias under any custom name to make sure the <code>generatePropertyDocument</code> task can be customized - This can be setup as a top level task too.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Mark the new named task to be dependent on the <code>generatePropertyDocument</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Set the name of the document</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Set the type of the document - <strong>MARKDOWN</strong>, <strong>ADOC</strong>, <strong>HTML</strong>, <strong>XML</strong></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>Specify the metadata input file, it is optional if not specified it will be read from the following path: <code>build/classes/java/main/META-INF/spring-configuration-metadata.json</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>Specify the output file, it is optional, if not specified the default output path will be: <code>build/property-docs/&lt;modules-name&gt;-property-docs.&lt;template-extension&gt;</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td>Apply any customization to the document - Please check out the available configuration properties <a href="template-customization.html#template-customizations" class="xref page">here</a></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Available customization blocks:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>asciiDocCustomization</strong></p>
+</li>
+<li>
+<p><strong>markdownCustomization</strong></p>
+</li>
+<li>
+<p><strong>htmlCustomization</strong></p>
+</li>
+<li>
+<p><strong>xmlCustomization</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Run the task to generate the documentation: <code>gradle build generateAdoc</code></p>
+</div>
+<div class="paragraph">
+<p>Or run them in two separate commands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>gradle build</code></p>
+</li>
+<li>
+<p><code>gradle generateAdoc</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The generated file will be placed to <code>build/property-docs/&lt;modules-name&gt;-property-docs.&lt;template-extension&gt;</code> if the <code>outputFile</code> attribute is not specified</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_multi_module_multiple_sub_projects"><a class="anchor" href="#_multi_module_multiple_sub_projects"></a>Multi-module / Multiple sub projects</h3>
+<div class="paragraph">
+<p>Multi-module setups are working as well, and to set up the aggregation is easier in Gradle than in Maven. Maven needs an extra module to make sure the aggregation goal/tasks runs after every metadata input file is generated, with Gradle we do not have to do it, we just have to create a task / or configure a top level task, and specify the metadata inputs.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">│ parent
+├── gradle-multi-module-a
+│   ...
+│   └── build.gradle
+├── gradle-multi-module-b
+│   ...
+│   └── build.gradle
+├── ...
+├── build.gradle
+└── settings.gradle</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Parent gradle.build</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">import org.rodnansol.gradle.tasks.AggregationInput
+
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'org.rodnansol:spring-configuration-property-documenter-gradle-plugin:&lt;latest-version&gt;' <i class="conum" data-value="1"></i><b>(1)</b>
+    }
+}
+
+plugins {
+    id 'java'
+}
+
+apply plugin: 'org.rodnansol.spring-configuration-property-documenter' <i class="conum" data-value="2"></i><b>(2)</b>
+
+group 'org.rodnansol.samples.gradle'
+version '999-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+
+tasks.register('aggregateAdocWithImperative') { <i class="conum" data-value="3"></i><b>(3)</b>
+    dependsOn generateAndAggregateDocuments {
+        documentName = "Hello World" <i class="conum" data-value="4"></i><b>(4)</b>
+        type = "ADOC"
+
+        <i class="conum" data-value="5"></i><b>(5)</b>
+        def moduleA = new AggregationInput()
+        moduleA.name = "Module A document"
+        moduleA.input = new File("gradle-multi-module-a")
+        metadataInputs.add(moduleA)
+
+        def moduleB = new AggregationInput()
+        moduleB.name = "Module B document"
+        moduleB.input = new File("gradle-multi-module-b")
+        metadataInputs.add(moduleB)
+
+        outputFile = new File("build/property-docs/aggregated-adoc.adoc") <i class="conum" data-value="6"></i><b>(6)</b>
+        asciiDocCustomization { <i class="conum" data-value="7"></i><b>(7)</b>
+            contentCustomization {
+                includeEnvFormat = true
+            }
+            unknownGroupLocalization = "Renamed unknown group"
+            tocLevels = 3
+
+        }
+    }
+}
+
+tasks.register('aggregateAdocWithDsl') { <i class="conum" data-value="8"></i><b>(8)</b>
+    dependsOn generateAndAggregateDocuments {
+        documentName = "Hello World"
+        type = "ADOC"
+
+        metadataInputs { <i class="conum" data-value="9"></i><b>(9)</b>
+            metadata { <i class="conum" data-value="10"></i><b>(10)</b>
+                name = "Module A" <i class="conum" data-value="11"></i><b>(11)</b>
+                input = file("gradle-multi-module-a") <i class="conum" data-value="12"></i><b>(12)</b>
+            }
+            metadata {
+                name = "Module B"
+                input = file("gradle-multi-module-b")
+            }
+            metadata {
+                name = "Sprint Boot 2.7.8 - Include Groups and Lists"
+                description = "Sprint Boot 2.7.8 related properties with inclusions"
+                input = file(System.getProperty("user.home") + "/.m2/repository/org/springframework/boot/spring-boot/2.7.8/spring-boot-2.7.8.jar")
+                includedProperties = ["logging.charset.console", "spring.banner.image.invert"] <i class="conum" data-value="13"></i><b>(13)</b>
+                includedGroups = ["Unknown group"]
+            }
+            metadata {
+                name = "Sprint Boot 2.7.8 - Exclude Groups and Lists"
+                description = "Sprint Boot 2.7.8 related properties with exclusions"
+                input = file(System.getProperty("user.home") + "/.m2/repository/org/springframework/boot/spring-boot/2.7.8/spring-boot-2.7.8.jar")
+                excludedProperties = ["logging.charset.console", "spring.banner.image.invert"]
+                excludedGroups = ["spring.jta.atomikos.datasource"]
+            }
+        }
+
+        outputFile = new File("build/property-docs/aggregated-adoc.adoc") <i class="conum" data-value="14"></i><b>(14)</b>
+        asciiDocCustomization { <i class="conum" data-value="15"></i><b>(15)</b>
+            contentCustomization {
+                includeEnvFormat = true
+            }
+            unknownGroupLocalization = "Renamed unknown group"
+            tocLevels = 3
+
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Define the <code>spring-configuration-property-documenter-gradle-plugin</code> in your buildscript</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Apply the plugin to make sure the tasks will be available</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Create an alias for the <code>generateAndAggregateDocuments</code> under any name</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Set the name and type of the document</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Specify the input files via an imperative way (if this is the preferred way)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>In case of aggregation the <code>outputFile</code> is mandatory</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Apply customizations if needed</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>DSL based example</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>Use the <code>metadataInputs</code> key to specify the input files (folder, specific file, JAR/ZIP file)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td>Specify multiple inputs if needed</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="11"></i><b>11</b></td>
+<td>Specify the name of the section in the final aggregated document</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="12"></i><b>12</b></td>
+<td>Specify the input</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="13"></i><b>13</b></td>
+<td>Specify exclude or include lists if needed</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="14"></i><b>14</b></td>
+<td><code>outputFile</code> file is mandatory in this case</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="15"></i><b>15</b></td>
+<td>Apply customizations if needed</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To make sure the subprojects are providing the required <code>spring-configuration-metadata.json</code> the <code>org.springframework.boot:spring-boot-configuration-processor</code> dependency must be declared as an <code>annotationProcessor</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Run the task to generate the documentation: <code>gradle build aggregateAdocWithDsl</code></p>
+</div>
+<div class="paragraph">
+<p>Or run them in two separate commands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>gradle build</code></p>
+</li>
+<li>
+<p><code>gradle aggregateAdocWithDsl</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_available_tasks_and_configurations"><a class="anchor" href="#_available_tasks_and_configurations"></a>Available tasks and configurations</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h3>
+<div class="sect3">
+<h4 id="generate-property-document"><a class="anchor" href="#generate-property-document"></a><code>GeneratePropertyDocumentTask</code></h4>
+<details>
+<summary class="title">Configuration</summary>
+<div class="content">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 42.8571%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Mandatory</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Since</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">documentName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Main header&#8217;s name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">documentDescription</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description about the module that will be generated into the document</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">template</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Template to be used during the generation, if not specified the default templates are going to be used, (by default the file&#8217;s name must end with <code>.hbs</code> but in this property the <code>.hbs</code> extension must be omitted) - For more information check the  <a href="template-customization.html#template-customizations" class="xref page">template customization section</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The type of the document, basically the extension. If the <code>template</code> is not being specified the default template will be resolved based on this value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">markdownCustomization</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Markdown customization configurations. For more information check the class or <a href="template-customization.html#template-customizations" class="xref page">this</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol.core.generator
+.template.customization
+.MarkdownTemplateCustomization</code> class.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">asciiDocCustomization</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AsciiDoc customization configurations. For more information check the class or <a href="template-customization.html#template-customizations" class="xref page">this</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol.core.generator
+.template.customization
+.AsciiDocTemplateCustomization</code> class.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">htmlCustomization</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTML customization configurations. For more information check the class or <a href="template-customization.html#template-customizations" class="xref page">this</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol.core.generator
+.template.customization
+.HtmlTemplateCustomization</code> class.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xmlCustomization</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">XML customization configurations. For more information check the class or <a href="template-customization.html#template-customizations" class="xref page">this</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol.core.generator
+.template.customization
+.XmlTemplateCustomization</code> class.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">metadataInput</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the metadata input:</p>
+<p class="tableblock">- A path to JSON file for example:
+<strong>target/classes/META-INF/spring-configuration-metadata.json</strong></p>
+<p class="tableblock">- A directory that contains the file</p>
+<p class="tableblock">- A jar/zip file that contains the file within the following entry <strong>META-INF/spring-configuration-metadata.json</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>target/classes/META-INF/spring-configuration-metadata.json</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">templateCompilerName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom template compiler&#8217;s fully qualified name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol.core
+.generator.template
+.HandlebarsTemplateCompiler</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">outputFile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The output file&#8217;s full path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">failOnError</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If the Maven build should fail in case the document generation fails.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>false</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">excludedGroups</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of groups that should be <strong>excluded</strong> from the final document</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty list - Everything will be included</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">includedGroups</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of groups that should be <strong>included</strong> int the final document</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty list - Everything will be included</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">excludedProperties</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of properties that should be <strong>excluded</strong> from the final document</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty list - Everything will be included</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">includedProperties</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of properties that should be <strong>included</strong> int the final document</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty list - Everything will be included</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="sect3">
+<h4 id="generate-and-aggregate-documents"><a class="anchor" href="#generate-and-aggregate-documents"></a><code>GenerateAndAggregateDocumentsTask</code></h4>
+<details>
+<summary class="title">Configuration</summary>
+<div class="content">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 42.8571%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Mandatory</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Since</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">documentName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Main header&#8217;s name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">documentDescription</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description about the module that will be generated into the document</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The type of the document, basically the extension. If the <code>template</code> is not being specified the default template will be resolved based on this value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">markdownCustomization</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Markdown customization configurations. For more information check the class or <a href="template-customization.html#template-customizations" class="xref page">this</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol
+.core.generator
+.template.customization
+.MarkdownTemplateCustomization</code> class.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">asciiDocCustomization</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AsciiDoc customization configurations. For more information check the class or <a href="template-customization.html#template-customizations" class="xref page">this</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol
+.core.generator
+.template.customization
+.AsciiDocTemplateCustomization</code> class.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">htmlCustomization</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTML customization configurations. For more information check the class or <a href="template-customization.html#template-customizations" class="xref page">this</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol
+.core.generator
+.template.customization
+.HtmlTemplateCustomization</code> class.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xmlCustomization</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">XML customization configurations. For more information check the class or <a href="template-customization.html#template-customizations" class="xref page">this</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol
+.core.generator
+.template.customization
+.XmlTemplateCustomization</code> class.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">metadataInputs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Multiple input file - Type: <a href="#aggregation-input">AggregationInput</a> below</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">outputFile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The output file&#8217;s full path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">templateCompilerName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom template compiler&#8217;s fully qualified name - For more information check the  <a href="template-customization.html#template-customizations" class="xref page">template customization section</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol.core
+.generator.template
+.HandlebarsTemplateCompiler</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">headerTemplate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom header template file&#8217;s path (by default the file&#8217;s name must end with <code>.hbs</code> but in this property the <code>.hbs</code> extension must be omitted) - For more information check the  <a href="template-customization.html#template-customizations" class="xref page">template customization section</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">contentTemplate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom content template file&#8217;s path (by default the file&#8217;s name must end with <code>.hbs</code> but in this property the <code>.hbs</code> extension must be omitted) - For more information check the  <a href="template-customization.html#template-customizations" class="xref page">template customization section</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">footerTemplate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom footer template file&#8217;s path (by default the file&#8217;s name must end with <code>.hbs</code> but in this property the <code>.hbs</code> extension must be omitted) - For more information check the  <a href="template-customization.html#template-customizations" class="xref page">template customization section</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+</tbody>
+</table>
+<table id="aggregation-input" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. <code>org.rodnansol.gradle.tasks.AggregationInput</code></caption>
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 57.1428%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Mandatory</th>
+<th class="tableblock halign-left valign-top">Since</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the module</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>description</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description of the module</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>input</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Input file or path</p>
+<p class="tableblock">- A path to JSON file for example:</p>
+<p class="tableblock"><strong>target/classes/META-INF/spring-configuration-metadata.json</strong></p>
+<p class="tableblock">- A directory that contains the file</p>
+<p class="tableblock">- A jar/zip file that contains the file within the following entry:</p>
+<p class="tableblock"><strong>META-INF/spring-configuration-metadata.json</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5.0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

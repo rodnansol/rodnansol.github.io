@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>http://rodnansol.org/spring-configuration-property-documenter/latest/gradle-plugin.html</loc>
+<lastmod>2023-04-08T16:56:39.401Z</lastmod>
+</url>
+<url>
+<loc>http://rodnansol.org/spring-configuration-property-documenter/latest/index.html</loc>
+<lastmod>2023-04-08T16:56:39.401Z</lastmod>
+</url>
+<url>
+<loc>http://rodnansol.org/spring-configuration-property-documenter/latest/maven-plugin.html</loc>
+<lastmod>2023-04-08T16:56:39.401Z</lastmod>
+</url>
+<url>
+<loc>http://rodnansol.org/spring-configuration-property-documenter/latest/migrations.html</loc>
+<lastmod>2023-04-08T16:56:39.401Z</lastmod>
+</url>
+<url>
+<loc>http://rodnansol.org/spring-configuration-property-documenter/latest/template-customization.html</loc>
+<lastmod>2023-04-08T16:56:39.401Z</lastmod>
+</url>
+<url>
+<loc>http://rodnansol.org/spring-configuration-property-documenter/latest/usage-jbang.html</loc>
+<lastmod>2023-04-08T16:56:39.401Z</lastmod>
+</url>
+</urlset>

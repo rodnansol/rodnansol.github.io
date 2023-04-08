@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Maven Plugin :: Rodnan Sol</title>
+    <link rel="canonical" href="http://rodnansol.org/spring-configuration-property-documenter/latest/maven-plugin.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="http://rodnansol.org">Rodnan Sol</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="spring-configuration-property-documenter" data-version="latest">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Spring Configuration Property Documenter</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Homepage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Plugins / Usage</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="maven-plugin.html">Maven Plugin</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="gradle-plugin.html">Gradle Plugin</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="usage-jbang.html">JBang usage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Customization</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="template-customization.html">Template Customization</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Migration guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="migrations.html">Migrations</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Spring Configuration Property Documenter</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="index.html">Spring Configuration Property Documenter</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Spring Configuration Property Documenter</a></li>
+    <li>Plugins / Usage</li>
+    <li><a href="maven-plugin.html">Maven Plugin</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/rodnansol/spring-configuration-property-documenter/edit/master/docs/modules/ROOT/pages/maven-plugin.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Maven Plugin</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you are having a Maven project where you would like to use the tool, then this documentation will guide you through all the steps you need to set it up, you can use it for a single module Maven project or a multi-module Maven project, both are supported.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The plugin is built with <strong>Java 11</strong> and <strong>Maven 3.8.1</strong> API, make sure requirements are met.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The multi-module setup will need a "small" trick/hack to achieve the things we want.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_setup">Setup</a>
+<ul class="sectlevel2">
+<li><a href="#_single_module">Single module</a></li>
+<li><a href="#_multi_module">Multi-module</a></li>
+</ul>
+</li>
+<li><a href="#available-goals-and-config">Available goals and configuration</a>
+<ul class="sectlevel2">
+<li><a href="#_configuration">Configuration</a>
+<ul class="sectlevel3">
+<li><a href="#generate-property-document"><code>generate-property-document</code></a></li>
+<li><a href="#generate-and-aggregate-documents"><code>generate-and-aggregate-documents</code></a></li>
+<li><a href="#aggregate-documents"><code>aggregate-documents</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setup"><a class="anchor" href="#_setup"></a>Setup</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_single_module"><a class="anchor" href="#_single_module"></a>Single module</h3>
+<div class="paragraph">
+<p>In this case the story is relatively simple, you have to only insert the following code snippet to your <code>pom.xml</code> and after that you can use it immediately.</p>
+</div>
+<div class="paragraph">
+<p>The plugin is having multiple <a href="#available-goals-and-config">goals</a> at this moment, please check out the documentation and customization for those.</p>
+</div>
+<div class="paragraph">
+<p>Spring&#8217;s annotation processor will kick in the <code>compile</code> phase, and because of that the plugin must be linked after that lifecycle, for example the <code>process-classes</code>.</p>
+</div>
+<details>
+<summary class="title">pom.xml</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml"> &lt;build&gt;
+        &lt;plugins&gt;
+            ...
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.rodnansol&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-configuration-property-documenter-maven-plugin&lt;/artifactId&gt;
+                &lt;version&gt;latest-version&lt;/version&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                        &lt;id&gt;generate-adoc&lt;/id&gt;
+                        &lt;phase&gt;process-classes&lt;/phase&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;generate-property-document&lt;/goal&gt;
+                        &lt;/goals&gt;
+                        &lt;configuration&gt;
+                            &lt;type&gt;ADOC&lt;/type&gt;
+                        &lt;/configuration&gt;
+                    &lt;/execution&gt;
+                    &lt;execution&gt;
+                        &lt;id&gt;generate-markdown&lt;/id&gt;
+                        &lt;phase&gt;process-classes&lt;/phase&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;generate-property-document&lt;/goal&gt;
+                        &lt;/goals&gt;
+                        &lt;configuration&gt;
+                            &lt;type&gt;MARKDOWN&lt;/type&gt;
+                        &lt;/configuration&gt;
+                    &lt;/execution&gt;
+                    &lt;execution&gt;
+                        &lt;id&gt;generate-html&lt;/id&gt;
+                        &lt;phase&gt;process-classes&lt;/phase&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;generate-property-document&lt;/goal&gt;
+                        &lt;/goals&gt;
+                        &lt;configuration&gt;
+                            &lt;type&gt;HTML&lt;/type&gt;
+                        &lt;/configuration&gt;
+                    &lt;/execution&gt;
+                &lt;/executions&gt;
+            &lt;/plugin&gt;
+        ...
+        &lt;/plugins&gt;
+    &lt;/build&gt;</code></pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>In this example 3 files are going to be created with different extensions (Markdown, AsciiDoc, HTML).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_multi_module"><a class="anchor" href="#_multi_module"></a>Multi-module</h3>
+<div class="paragraph">
+<p>Bigger projects are going to be containing multiple Maven modules and the plugin is also prepared for those cases as well, we can generate the document for each module, and we are going to be able to aggregate them. There are two supported options right now.</p>
+</div>
+<div class="paragraph">
+<p>For these cases we have to introduce a new module that will contain all the other modules as its dependencies, with this "trick" we can ensure that the plugin will be invoked at the end of the Maven build and all the required resources (the <code>spring-configuration-metadata.json</code> files) will be already generated (without those it will be really hard to generate the final docucment).</p>
+</div>
+<div class="paragraph">
+<p>Check the diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/multi-module-maven-setup.png" alt="Multi module Maven example">
+</div>
+</div>
+<div class="paragraph">
+<p>In the <strong>multi-module-docs</strong> module we have to configure the plugin:</p>
+</div>
+<details>
+<summary class="title">pom.xml</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml"> &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.rodnansol&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-configuration-property-documenter-maven-plugin&lt;/artifactId&gt;
+                &lt;version&gt;latest-version&lt;/version&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                        &lt;id&gt;aggregate-docs-markdown&lt;/id&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;generate-and-aggregate-documents&lt;/goal&gt;
+                        &lt;/goals&gt;
+                        &lt;phase&gt;package&lt;/phase&gt;
+                        &lt;configuration&gt;
+                            &lt;type&gt;MARKDOWN&lt;/type&gt;
+                            &lt;inputs&gt;
+                                &lt;input&gt;
+                                    &lt;name&gt;Multi Module A&lt;/name&gt;
+                                    &lt;description&gt;Multi Module A properties with a folder input&lt;/description&gt;
+                                    &lt;input&gt;../multi-module-a&lt;/input&gt;
+                                &lt;/input&gt;
+                                &lt;input&gt;
+                                    &lt;name&gt;Multi Module B&lt;/name&gt;
+                                    &lt;description&gt;Multi Module B properties with a jar file input&lt;/description&gt;
+                                    &lt;input&gt;../multi-module-b/target/multi-module-b-999-SNAPSHOT.jar&lt;/input&gt;
+                                &lt;/input&gt;
+                                &lt;input&gt;
+                                    &lt;name&gt;Multi Module C&lt;/name&gt;
+                                    &lt;description&gt;Multi Module C properties with a specific file input&lt;/description&gt;
+                                    &lt;input&gt;../multi-module-c/target/classes/META-INF/spring-configuration-metadata.json&lt;/input&gt;
+                                &lt;/input&gt;
+                            &lt;/inputs&gt;
+                            &lt;outputFile&gt;target/aggregated-md.md&lt;/outputFile&gt;
+                        &lt;/configuration&gt;
+                    &lt;/execution&gt;
+                    &lt;execution&gt;
+                        &lt;id&gt;aggregate-docs-markdown-adoc&lt;/id&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;generate-and-aggregate-documents&lt;/goal&gt;
+                        &lt;/goals&gt;
+                        &lt;phase&gt;package&lt;/phase&gt;
+                        &lt;configuration&gt;
+                            &lt;type&gt;ADOC&lt;/type&gt;
+                            &lt;inputs&gt;
+                                &lt;input&gt;
+                                    &lt;name&gt;Multi Module A&lt;/name&gt;
+                                    &lt;description&gt;Multi Module A properties with a folder input&lt;/description&gt;
+                                    &lt;input&gt;../multi-module-a&lt;/input&gt;
+                                &lt;/input&gt;
+                                &lt;input&gt;
+                                    &lt;name&gt;Multi Module B&lt;/name&gt;
+                                    &lt;description&gt;Multi Module B properties with a jar file input&lt;/description&gt;
+                                    &lt;input&gt;../multi-module-b/target/multi-module-b-999-SNAPSHOT.jar&lt;/input&gt;
+                                &lt;/input&gt;
+                                &lt;input&gt;
+                                    &lt;name&gt;Multi Module C&lt;/name&gt;
+                                    &lt;description&gt;Multi Module C properties with a specific file input&lt;/description&gt;
+                                    &lt;input&gt;../multi-module-c/target/classes/META-INF/spring-configuration-metadata.json&lt;/input&gt;
+                                &lt;/input&gt;
+                            &lt;/inputs&gt;
+                            &lt;outputFile&gt;target/aggregated-adoc.adoc&lt;/outputFile&gt;
+                        &lt;/configuration&gt;
+                    &lt;/execution&gt;
+                    &lt;execution&gt;
+                        &lt;id&gt;aggregate-docs-markdown-html&lt;/id&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;generate-and-aggregate-documents&lt;/goal&gt;
+                        &lt;/goals&gt;
+                        &lt;phase&gt;package&lt;/phase&gt;
+                        &lt;configuration&gt;
+                            &lt;type&gt;HTML&lt;/type&gt;
+                            &lt;inputs&gt;
+                                &lt;input&gt;
+                                    &lt;name&gt;Multi Module A&lt;/name&gt;
+                                    &lt;description&gt;Multi Module A properties with a folder input&lt;/description&gt;
+                                    &lt;input&gt;../multi-module-a&lt;/input&gt;
+                                &lt;/input&gt;
+                                &lt;input&gt;
+                                    &lt;name&gt;Multi Module B&lt;/name&gt;
+                                    &lt;description&gt;Multi Module B properties with a jar file input&lt;/description&gt;
+                                    &lt;input&gt;../multi-module-b/target/multi-module-b-999-SNAPSHOT.jar&lt;/input&gt;
+                                &lt;/input&gt;
+                                &lt;input&gt;
+                                    &lt;name&gt;Multi Module C&lt;/name&gt;
+                                    &lt;description&gt;Multi Module C properties with a specific file input&lt;/description&gt;
+                                    &lt;input&gt;../multi-module-c/target/classes/META-INF/spring-configuration-metadata.json&lt;/input&gt;
+                                &lt;/input&gt;
+                            &lt;/inputs&gt;
+                            &lt;outputFile&gt;target/aggregated-html.html&lt;/outputFile&gt;
+                        &lt;/configuration&gt;
+                    &lt;/execution&gt;
+                &lt;/executions&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;</code></pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>The <a href="#generate-and-aggregate-documents"><code>generate-and-aggregate-documents</code></a> goal is not linked to any lifecycle, but it must be run after all the other modules have been built. We use the <code>package</code> lifecycle here, but other can be used as well, the dependency association will make sure that this module can not be built until the other dependencies are not available/built.</p>
+</div>
+<div class="paragraph">
+<p>As we can see in the <code>input</code> tags we can define an <code>input</code> field that can be:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a specific <code>spring-configuration-metadata.json</code> file</p>
+</li>
+<li>
+<p>a directory (that must contain the <code>spring-configuration-metadata.json</code> in the children directories)</p>
+</li>
+<li>
+<p>a jar file (that must contain the <code>spring-configuration-metadata.json</code> in the <code>META-INF</code> directory)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="available-goals-and-config"><a class="anchor" href="#available-goals-and-config"></a>Available goals and configuration</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Goal</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generate-property-document</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This goal reads the <code>spring-configuration-metadata.json</code> file from any given source (input file, directory or JAR file) and generates a single document for the given module. It is good to document a single application or a single module.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>generate-and-aggregate-documents</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This goal reads all the given <code>spring-configuration-metadata.json</code> files from the given/specified sources and it will be generating one single document that will contain all documentation created by the given sources. This goal is good for a multi module setup, it is able to read multiple files and aggregate them.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>aggregate-documents</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This goal reads all the given files and it will aggregates them into one big file. It is good if you have multiple different template based documentation and you would like to aggregate them into one. <strong>This is not going to generate documents only aggregate the given ones, this has a different purpose than the <code>generate-and-aggregate-documents</code></strong>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h3>
+<div class="sect3">
+<h4 id="generate-property-document"><a class="anchor" href="#generate-property-document"></a><code>generate-property-document</code></h4>
+<details>
+<summary class="title">Configuration</summary>
+<div class="content">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 42.8571%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Mandatory</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Since</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Main header&#8217;s name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No (it will be inferred if not specified from the default value)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${project.name}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description about the module that will be generated into the document</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No (it will be inferred if not specified from the default value)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${project.description}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">template</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Template to be used during the generation, if not specified the default templates are going to be used, (by default the file&#8217;s name must end with <code>.hbs</code> but in this property the <code>.hbs</code> extension must be omitted) - For more information check the  <a href="template-customization.html#template-customizations" class="xref page">template customization section</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The type of the document, basically the extension. If the <code>template</code> is not being specified the default template will be resolved based on this value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>MARKDOWN</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">markdownCustomization</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Markdown customization configurations. For more information check the class or <a href="template-customization.html#template-customizations" class="xref page">this</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol.core.generator
+.template.customization
+.MarkdownTemplateCustomization</code> class.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">asciiDocCustomization</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AsciiDoc customization configurations. For more information check the class or <a href="template-customization.html#template-customizations" class="xref page">this</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol.core.generator
+.template.customization
+.AsciiDocTemplateCustomization</code> class.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">htmlCustomization</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTML customization configurations. For more information check the class or <a href="template-customization.html#template-customizations" class="xref page">this</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol.core.generator
+.template.customization
+.HtmlTemplateCustomization</code> class.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xmlCustomization</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">XML customization configurations. For more information check the class or <a href="template-customization.html#template-customizations" class="xref page">this</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol.core.generator
+.template.customization
+.XmlTemplateCustomization</code> class.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">metadataInput</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the metadata input:</p>
+<p class="tableblock">- A path to JSON file for example:
+<strong>target/classes/META-INF/spring-configuration-metadata.json</strong></p>
+<p class="tableblock">- A directory that contains the file</p>
+<p class="tableblock">- A jar/zip file that contains the file within the following entry <strong>META-INF/spring-configuration-metadata.json</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>target/classes/META-INF/spring-configuration-metadata.json</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">templateCompilerName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom template compiler&#8217;s fully qualified name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol.core
+.generator.template
+.HandlebarsTemplateCompiler</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">outputFile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The output file&#8217;s full path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">failOnError</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If the Maven build should fail in case the document generation fails.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>false</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">excludedGroups</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of groups that should be <strong>excluded</strong> from the final document</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty list - Everything will be included</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.4.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">includedGroups</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of groups that should be <strong>included</strong> int the final document</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty list - Everything will be included</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.4.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">excludedProperties</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of properties that should be <strong>excluded</strong> from the final document</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty list - Everything will be included</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.4.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">includedProperties</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of properties that should be <strong>included</strong> int the final document</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty list - Everything will be included</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.4.0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="sect3">
+<h4 id="generate-and-aggregate-documents"><a class="anchor" href="#generate-and-aggregate-documents"></a><code>generate-and-aggregate-documents</code></h4>
+<details>
+<summary class="title">Configuration</summary>
+<div class="content">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 42.8571%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Mandatory</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Since</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Main header&#8217;s name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No (it will be inferred if not specified from the default value)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${project.name}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description about the module that will be generated into the document</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No (it will be inferred if not specified from the default value)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${project.description}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The type of the document, basically the extension. If the <code>template</code> is not being specified the default template will be resolved based on this value.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>MARKDOWN</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">markdownCustomization</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Markdown customization configurations. For more information check the class or <a href="template-customization.html#template-customizations" class="xref page">this</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol
+.core.generator
+.template.customization
+.MarkdownTemplateCustomization</code> class.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">asciiDocCustomization</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AsciiDoc customization configurations. For more information check the class or <a href="template-customization.html#template-customizations" class="xref page">this</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol
+.core.generator
+.template.customization
+.AsciiDocTemplateCustomization</code> class.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">htmlCustomization</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTML customization configurations. For more information check the class or <a href="template-customization.html#template-customizations" class="xref page">this</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol
+.core.generator
+.template.customization
+.HtmlTemplateCustomization</code> class.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">xmlCustomization</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">XML customization configurations. For more information check the class or <a href="template-customization.html#template-customizations" class="xref page">this</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol
+.core.generator
+.template.customization
+.XmlTemplateCustomization</code> class.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">inputs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Multiple input file - Type: <a href="#aggregation-mojo-input">AggregationMojoInput</a> below</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">outputFile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The output file&#8217;s full path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">templateCompilerName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom template compiler&#8217;s fully qualified name - For more information check the  <a href="template-customization.html#template-customizations" class="xref page">template customization section</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>org.rodnansol.core
+.generator.template
+.HandlebarsTemplateCompiler</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">headerTemplate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom header template file&#8217;s path (by default the file&#8217;s name must end with <code>.hbs</code> but in this property the <code>.hbs</code> extension must be omitted) - For more information check the  <a href="template-customization.html#template-customizations" class="xref page">template customization section</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">contentTemplate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom content template file&#8217;s path (by default the file&#8217;s name must end with <code>.hbs</code> but in this property the <code>.hbs</code> extension must be omitted) - For more information check the  <a href="template-customization.html#template-customizations" class="xref page">template customization section</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">footerTemplate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom footer template file&#8217;s path (by default the file&#8217;s name must end with <code>.hbs</code> but in this property the <code>.hbs</code> extension must be omitted) - For more information check the  <a href="template-customization.html#template-customizations" class="xref page">template customization section</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.2.1</p></td>
+</tr>
+</tbody>
+</table>
+<table id="aggregation-mojo-input" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. <code>org.rodnansol.maven.AggregationMojoInput</code></caption>
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 57.1428%;">
+<col style="width: 14.2857%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Mandatory</th>
+<th class="tableblock halign-left valign-top">Since</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the module</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>description</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description of the module</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>input</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Input file or path</p>
+<p class="tableblock">- A path to JSON file for example:</p>
+<p class="tableblock"><strong>target/classes/META-INF/spring-configuration-metadata.json</strong></p>
+<p class="tableblock">- A directory that contains the file</p>
+<p class="tableblock">- A jar/zip file that contains the file within the following entry:</p>
+<p class="tableblock"><strong>META-INF/spring-configuration-metadata.json</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="sect3">
+<h4 id="aggregate-documents"><a class="anchor" href="#aggregate-documents"></a><code>aggregate-documents</code></h4>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Exprimental goal, no documentation yet.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

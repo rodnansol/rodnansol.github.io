@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Spring Configuration Property Documenter :: Rodnan Sol</title>
+    <link rel="canonical" href="http://rodnansol.org/spring-configuration-property-documenter/latest/index.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="http://rodnansol.org">Rodnan Sol</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="spring-configuration-property-documenter" data-version="latest">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Spring Configuration Property Documenter</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="index.html">Homepage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Plugins / Usage</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="maven-plugin.html">Maven Plugin</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="gradle-plugin.html">Gradle Plugin</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="usage-jbang.html">JBang usage</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Customization</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="template-customization.html">Template Customization</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Migration guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="migrations.html">Migrations</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Spring Configuration Property Documenter</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="index.html">Spring Configuration Property Documenter</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Spring Configuration Property Documenter</a></li>
+    <li><a href="index.html">Homepage</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/rodnansol/spring-configuration-property-documenter/edit/master/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Spring Configuration Property Documenter</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph text-center">
+<p><span class="image"><img src="https://img.shields.io/maven-central/v/org.rodnansol/spring-configuration-property-documenter.svg" alt="Maven Central"></span>
+<span class="image"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="Apache 2.0"></span>
+<span class="image"><img src="https://img.shields.io/twitter/url/https/twitter.com/rodnansol.svg?style=social&amp;label=Follow%20%40RodnanSol" alt="rodnansol"></span>
+<span class="image"><img src="https://dcbadge.vercel.app/api/server/USyh6XUjvP" alt="Discord"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Have you ever felt that you have no proper way to oversee a project because it is having a lot of customizable properties, but they are not documented, and you do not know where to start a new feature or bugfix?</p>
+</li>
+<li>
+<p>Have you ever felt like you are having too much services, and you do not know how to customize them externally?</p>
+</li>
+<li>
+<p>Have you ever wondered is there any way to document your application&#8217;s properties that you are having in your project?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If for any question your answer is <strong>YES</strong> then you are at the best place.</p>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_goals">Goals</a>
+<ul class="sectlevel2">
+<li><a href="#_introduction">Introduction</a></li>
+<li><a href="#_project">Project</a>
+<ul class="sectlevel3">
+<li><a href="#_results">Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_setup">Setup</a>
+<ul class="sectlevel2">
+<li><a href="#_requirements">Requirements</a></li>
+<li><a href="#_modules">Modules</a>
+<ul class="sectlevel3">
+<li><a href="#core">spring-configuration-property-documenter-core</a></li>
+<li><a href="#maven-plugin">spring-configuration-property-documenter-maven-plugin</a></li>
+<li><a href="#jbang-module">jbang</a></li>
+<li><a href="#gradle-plugin">spring-configuration-property-documenter-gradle-plugin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_usage">Usage</a>
+<ul class="sectlevel2">
+<li><a href="#_entry_points">Entry points</a></li>
+<li><a href="#_customization">Customization</a></li>
+</ul>
+</li>
+<li><a href="#_contribution">Contribution</a>
+<ul class="sectlevel2">
+<li><a href="#_fork">Fork</a></li>
+<li><a href="#_how_to_build_the_project">How to build the project?</a></li>
+<li><a href="#_code_formatter">Code formatter</a></li>
+<li><a href="#_commit_messages">Commit messages</a></li>
+</ul>
+</li>
+<li><a href="#_contributors">Contributors</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_goals"><a class="anchor" href="#_goals"></a>Goals</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h3>
+<div class="paragraph">
+<p>The <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/index.html">Spring Framework</a> is a really powerful tool that lets you build simple and complex application with Java. Developers have been using it as their main framework to build applications, and during any software development developers tend to make their solutions future-proof and highly customizable.</p>
+</div>
+<div class="paragraph">
+<p>To make sure these goals could be achieved proper requirements and documents are required for the team and the software. As the software is being built and new features are being implemented and as the codebase is growing, developers tend to make shortcuts, and they stop writing documentations, the requirements are getting weaker and the quality of the software is getting worse.</p>
+</div>
+<div class="paragraph">
+<p>Developers like to automatize most of their "boring" tasks and creating documentation is a good candidate for this one, if the code itself contains enough information to make it as the "official" documentation, then why shouldn&#8217;t we utilize tools that achieve these goals?</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_project"><a class="anchor" href="#_project"></a>Project</h3>
+<div class="paragraph">
+<p>The Spring Framework ships an annotation processing library that creates metadata from the classes thar are annotation with the <code>@ConfigurationProperties</code> annotation. This library is called <code>spring-boot-configuration-processor</code> and you can read more about it here: <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/configuration-metadata.html">Configuration Metadata</a>.</p>
+</div>
+<div class="paragraph">
+<p>After your application has this dependency during build time the annotation processor will kick in and a so called <code>spring-configuration-metadata.json</code> file will be created, that will represent your <code>@ConfigurationProperties</code> annotated classes in a JSON file format, these are metadata about your classes.</p>
+</div>
+<details>
+<summary class="title">An example class and its metadata</summary>
+<div class="content">
+<div class="listingblock">
+<div class="title">An example configuration property class</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Component
+@ConfigurationProperties(prefix = "this.is.my")
+class MyProperties {
+
+    /**
+     * This is my variable.
+     */
+    private String variable;
+
+    @Deprecated(since = "Since you are a pilot")
+    private String anotherVariable = "with default value";
+
+    /**
+     * A duration.
+     */
+    private Duration duration = Duration.ofDays(2);
+
+    private Instant instant = Instant.ofEpochSecond(123);
+
+    private LocalDate date = LocalDate.of(1995, 10, 20);
+
+    private LocalDateTime dateTime = LocalDateTime.of(1995, 10, 20, 0, 1, 2, 3);
+    // Getters &amp; Setters
+
+    @DeprecatedConfigurationProperty(reason = "Because it is deprecated", replacement = "instant")
+    public Duration getDuration() {
+        return duration;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Generated spring-configuration-metadata.json file</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+  "groups": [
+    {
+      "name": "this.is.my",
+      "type": "org.rodnansol.MyProperties",
+      "sourceType": "org.rodnansol.MyProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "this.is.my.date",
+      "type": "java.time.LocalDate",
+      "sourceType": "org.rodnansol.MyProperties"
+    },
+    {
+      "name": "this.is.my.date-time",
+      "type": "java.time.LocalDateTime",
+      "sourceType": "org.rodnansol.MyProperties"
+    },
+    {
+      "name": "this.is.my.instant",
+      "type": "java.time.Instant",
+      "sourceType": "org.rodnansol.MyProperties"
+    },
+    {
+      "name": "this.is.my.variable",
+      "type": "java.lang.String",
+      "description": "This is my variable.",
+      "sourceType": "org.rodnansol.MyProperties"
+    },
+    {
+      "name": "this.is.my.another-variable",
+      "type": "java.lang.String",
+      "sourceType": "org.rodnansol.MyProperties",
+      "deprecated": true,
+      "deprecation": {}
+    },
+    {
+      "name": "this.is.my.duration",
+      "type": "java.time.Duration",
+      "description": "A duration.",
+      "sourceType": "org.rodnansol.MyProperties",
+      "deprecated": true,
+      "deprecation": {
+        "reason": "Because it is deprecated",
+        "replacement": "instant"
+      }
+    }
+  ],
+  "hints": []
+}</code></pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>This tool is going to read and process this metadata file, and it is able to generate shiny "documentations" in different formats.</p>
+</div>
+<div class="paragraph">
+<p>This tool will let you create:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Markdown</strong></p>
+</li>
+<li>
+<p><strong>AsciiDoc</strong></p>
+</li>
+<li>
+<p><strong>HTML</strong></p>
+</li>
+<li>
+<p><strong>XML</strong></p>
+</li>
+<li>
+<p><em>More to come&#8230;&#8203;</em></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>styled documents about your configuration properties.</p>
+</div>
+<div class="paragraph">
+<p>The tool is using <a href="https://jknack.github.io/handlebars.java/">Handlebars</a> as the templating engine, if you would like to create custom templates check the <a href="template-customization.html" class="xref page">Template Customization</a> section.</p>
+</div>
+<div class="paragraph">
+<p>You can use our <a href="maven-plugin.html" class="xref page">Maven</a> plugin or our <a href="gradle-plugin.html" class="xref page">Gradle</a> plugin to utilize the document generation tool.</p>
+</div>
+<div class="paragraph">
+<p>Check out the <a href="https://github.com/rodnansol/spring-configuration-property-documenter/tree/master/samples">samples</a> folder for the different samples.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you are using Spring with Quarkus, you can use this tool as well, please check out the Quarkus example in the <strong>samples</strong> folder.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_results"><a class="anchor" href="#_results"></a>Results</h4>
+<details>
+<summary class="title">AsciiDoc</summary>
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/asciidoc-result.png" alt="image$asciidoc result">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/asciidoc-result-2.png" alt="image$asciidoc result 2">
+</div>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">Markdown</summary>
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/markdown-result.png" alt="image$markdown result">
+</div>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">HTML</summary>
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/html-result.png" alt="image$html result">
+</div>
+</div>
+</div>
+</details>
+<details>
+<summary class="title">XML</summary>
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/xml-result.png" alt="image$xml result">
+</div>
+</div>
+</div>
+</details>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setup"><a class="anchor" href="#_setup"></a>Setup</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_requirements"><a class="anchor" href="#_requirements"></a>Requirements</h3>
+<div class="paragraph">
+<p>The tool has been built with Java and there are different entry points to it, but to be able to use it there are a few requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Java 11</p>
+</li>
+<li>
+<p>In case of a Maven project you need Maven 3 at least.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_modules"><a class="anchor" href="#_modules"></a>Modules</h3>
+<div class="paragraph">
+<p>The project is currently having the following modules:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#core">spring-configuration-property-documenter-core</a></p>
+</li>
+<li>
+<p><a href="#maven-plugin">spring-configuration-property-documenter-maven-plugin</a></p>
+</li>
+<li>
+<p><a href="#jbang-module">jbang</a> (Not Maven Module)</p>
+</li>
+<li>
+<p><a href="#gradle-plugin">spring-configuration-property-documenter-gradle-plugin</a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="core"><a class="anchor" href="#core"></a>spring-configuration-property-documenter-core</h4>
+<div class="paragraph">
+<p>This Maven module contains the "core" codebase for the whole project, other modules are just entry points to this core module.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="maven-plugin"><a class="anchor" href="#maven-plugin"></a>spring-configuration-property-documenter-maven-plugin</h4>
+<div class="paragraph">
+<p>This Maven module is a Maven plugin implementation, please check the <a href="maven-plugin.html" class="xref page">Maven Plugin</a> part for the available goals and configuration.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="jbang-module"><a class="anchor" href="#jbang-module"></a>jbang</h4>
+<div class="paragraph">
+<p>If you are not willing to use the Maven/Gradle plugin (that is coming soon), and you are familiar with JBang you can use this module where a <code>PropertyDocumenter</code> script is resides, to have a new entry point to the tool. Please read the <a href="usage-jbang.html" class="xref page">JBang usage</a> for more information.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="gradle-plugin"><a class="anchor" href="#gradle-plugin"></a>spring-configuration-property-documenter-gradle-plugin</h4>
+<div class="paragraph">
+<p>This Maven module is a Gradle plugin implementation, please check the <a href="gradle-plugin.html" class="xref page">Gradle Plugin</a> part for the available goals and configuration.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As said before the tool can be executed by multiple tools, by far probably the most convenient is going to be the Maven and Gradle plugin, but we offer another approach with <a href="https://www.jbang.dev/">JBang</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_entry_points"><a class="anchor" href="#_entry_points"></a>Entry points</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="maven-plugin.html" class="xref page">Maven Plugin</a></p>
+</li>
+<li>
+<p><a href="gradle-plugin.html" class="xref page">Gradle Plugin</a></p>
+</li>
+<li>
+<p><a href="usage-jbang.html" class="xref page">JBang usage</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_customization"><a class="anchor" href="#_customization"></a>Customization</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="template-customization.html" class="xref page">Template Customization</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_contribution"><a class="anchor" href="#_contribution"></a>Contribution</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_fork"><a class="anchor" href="#_fork"></a>Fork</h3>
+<div class="paragraph">
+<p>Please fork the project if you would like to contribute.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_build_the_project"><a class="anchor" href="#_how_to_build_the_project"></a>How to build the project?</h3>
+<div class="paragraph">
+<p>The project requires at least Java 11, if sdkman is installed on your machine <code>sdk e</code> command could be used in the terminal to set up the required Java version.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To build the project just run: <code>mvn verify -Pbuild</code> - The <code>build</code> profile is required to access the Gradle dependencies</p>
+</li>
+<li>
+<p>If you want to build the samples run: <code>mvn install</code> and then <code>mvn package -f samples/pom.xml</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_code_formatter"><a class="anchor" href="#_code_formatter"></a>Code formatter</h3>
+<div class="paragraph">
+<p>The project contains a <code>.editorconfig</code> file, and it should be utilized as well.</p>
+</div>
+<div class="paragraph">
+<p>During build time Checkstyle checks the conventions.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_commit_messages"><a class="anchor" href="#_commit_messages"></a>Commit messages</h3>
+<div class="paragraph">
+<p>The commit messages are based on the <strong>conventional-commits</strong>, please apply those rules.</p>
+</div>
+<div class="paragraph">
+<p>Learn more <a href="https://www.conventionalcommits.org">here</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_contributors"><a class="anchor" href="#_contributors"></a>Contributors</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Check the list of contributors <a href="https://github.com/rodnansol/spring-configuration-property-documenter/tree/master/CONTRIBUTORS.md">here</a>.</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>
