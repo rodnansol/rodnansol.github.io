@@ -1,9 +1,13 @@
 site:
   title: Rodnan Sol
   url: https://rodnansol.github.io/
-  start_page: spring-configuration-property-documenter::index.adoc
+  start_page: ROOT::index.adoc
+  robots: allow
 content:
   sources:
+    - url: ./
+      branches: HEAD
+      start_path: docs
     - url: https://github.com/rodnansol/spring-configuration-property-documenter
       start_path: docs
       branches: master
@@ -17,6 +21,7 @@ ui:
         static_files:
         - .nojekyll
     - path: .nojekyll
+
 antora:
   extensions:
     - '@antora/lunr-extension'
