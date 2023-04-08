@@ -1,0 +1,25 @@
+{{#with page.canonicalUrl}}
+    <meta property="og:url" content="{{{this}}}">
+{{/with}}
+{{#with page.description}}
+    <meta property="og:description" content="{{{detag this}}}">
+{{else}}
+    {{#if page.component}}
+        <meta property="og:description" content="A documentation page for {{{page.component.title}}}.">
+    {{/if}}
+{{/with}}
+{{#if page.component}}
+    <meta property="og:site_name" content="Rodnan Sol">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:title" content="{{#unless page.home}}{{{page.component.title}}} - {{/unless}}{{{detag page.title}}}">
+    <meta property="og:image" content="{{{or site.url siteRootPath}}}/_images/rodnan-sol-logo.png">
+    <meta name="twitter:site" content="@rodnansol">
+{{/if}}
+{{#unless (eq page.attributes.pagination undefined)}}
+    {{#with page.previous}}
+        <link rel="prev" href="{{{relativize ./url}}}">
+    {{/with}}
+    {{#with page.next}}
+        <link rel="next" href="{{{relativize ./url}}}">
+    {{/with}}
+{{/unless}}

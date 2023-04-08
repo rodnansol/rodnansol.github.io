@@ -21,6 +21,16 @@ ui:
         static_files:
         - .nojekyll
     - path: .nojekyll
+    - path: partials/head-meta.hbs
+      contents: ./supplemental-ui/partials/head-meta.hbs
+    - path: partials/head-icons.hbs
+      contents: ./supplemental-ui/partials/head-icons.hbs
+    - path: partials/header-content.hbs
+      contents: ./supplemental-ui/partials/header-content.hbs
+    - path: partials/nav-explore.hbs
+      contents: ./supplemental-ui/partials/nav-explore.hbs
+    - path: img/favicon.ico
+      contents: ./supplemental-ui/favicon.ico
 
 antora:
   extensions:
