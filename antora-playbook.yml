@@ -1,6 +1,6 @@
 site:
   title: Rodnan Sol
-  url: http://rodnansol.org
+  url: https://rodnansol.github.io/
   start_page: spring-configuration-property-documenter::index.adoc
 content:
   sources:
