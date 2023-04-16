@@ -156,7 +156,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>As written in the <strong>README</strong> file the core module is using <a href="https://jknack.github.io/handlebars.java/">Handlebars</a> as the templating engine. With that we are able to create smaller files and we can render them together.</p>
+<p>As written in the <strong>README</strong> file the core module is using <a href="https://jknack.github.io/handlebars.java/">Handlebars</a> as the templating engine. With that we are able to create smaller files, and we can render them together.</p>
 </div>
 <div class="paragraph">
 <p>If you would like to use your own templates as inputs you should first read through the following section to know which parameters you can use in your template.</p>
@@ -167,6 +167,16 @@
 <li><a href="#_handlebars_template_compiler">Handlebars template compiler</a></li>
 <li><a href="#_default_templates">Default templates</a>
 <ul class="sectlevel2">
+<li><a href="#template-modes">Template modes</a>
+<ul class="sectlevel3">
+<li><a href="#_examples">Examples</a>
+<ul class="sectlevel4">
+<li><a href="#_standard">Standard</a></li>
+<li><a href="#_compact">Compact</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#_asciidoc_customizations">AsciiDoc customizations</a>
 <ul class="sectlevel3">
 <li><a href="#_tag_filtering">Tag filtering</a>
@@ -178,7 +188,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#_custom_templates">Custom templates</a></li>
+<li><a href="#custom-templates">Custom templates</a></li>
 <li><a href="#_custom_template_compiler">Custom template compiler</a>
 <ul class="sectlevel2">
 <li><a href="#_register_custom_template_compiler">Register custom template compiler</a></li>
@@ -201,7 +211,7 @@
 <p>By default, the tool depends on the Handlebars 3rd party library to put life into the templates.</p>
 </div>
 <div class="paragraph">
-<p>With that said, Handlerbars supports custom helpers, and there are a few helpers, those can be used in any <a href="#_custom_templates">custom template</a>.</p>
+<p>With that said, Handlerbars supports custom helpers, and there are a few helpers, those can be used in any <a href="#custom-templates">custom template</a>.</p>
 </div>
 <div class="paragraph">
 <p>Helpers:</p>
@@ -213,6 +223,9 @@
 </li>
 <li>
 <p><code>is_included</code> - (<code>org.rodnansol.core.generator.template.handlebars.IsIncludedHelper</code>) - Checks if a given property can be rendred into the document or not.</p>
+</li>
+<li>
+<p><code>is_compact_mode</code> - (<code>org.rodnansol.core.generator.template.handlebars.IsCompactModeHelper</code>) - Shows if the template mode is set to <strong>COMPACT</strong> or not.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -289,6 +302,459 @@
 </div>
 </li>
 </ul>
+</div>
+<div class="sect2">
+<h3 id="template-modes"><a class="anchor" href="#template-modes"></a>Template modes</h3>
+<div class="sidebarblock">
+<div class="content">
+With the release of the <strong>0.6.0</strong> version the tool now supports different templates modes, the default and fallback option is called <strong>STANDARD</strong>
+</div>
+</div>
+<div class="paragraph">
+<p>With the template mode setting you can set how your template should look like, right now this customization option just selects different template for the different sections.</p>
+</div>
+<div class="paragraph">
+<p>Available modes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Standard</strong> - Default mode where the property group based properties are separated by the groups, and they are listed in different tables.</p>
+</li>
+<li>
+<p><strong>Compact</strong> - All the properties from the available property groups are shown in one just one table, no grouping by property groups.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>In this case the keys will be shown with their fully qualified name</strong>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Check the <a href="#template-customizations">template customizations</a> for the setting.</p>
+</div>
+<div class="sect3">
+<h4 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h4>
+<div class="sect4">
+<h5 id="_standard"><a class="anchor" href="#_standard"></a>Standard</h5>
+<details>
+<summary class="title">AsciiDoc</summary>
+<div class="content">
+<h3 id="_random_name_for_the_unknown_group" class="discrete">Random name for the Unknown group</h3>
+<div class="paragraph">
+<p><strong>Class:</strong> <code>Unknown</code></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1112%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Key</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Deprecation</th>
+<th class="tableblock halign-left valign-top">Environment variable</th>
+</tr>
+</thead>
+</table>
+<h3 id="_this_is_your" class="discrete">this.is.your</h3>
+<div class="paragraph">
+<p><strong>Class:</strong> <code>org.rodnansol.YourProperties</code></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1112%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Key</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Deprecation</th>
+<th class="tableblock halign-left valign-top">Environment variable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">property</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is YOUR property.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>THIS_IS_YOUR_PROPERTY</code></p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_this_is_a_bean_configuration" class="discrete">this.is.a.bean.configuration</h3>
+<div class="paragraph">
+<p><strong>Class:</strong> <code>org.rodnansol.PropertiesForConfiguration</code></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1112%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Key</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Deprecation</th>
+<th class="tableblock halign-left valign-top">Environment variable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">configuration-value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A field inside a class that is not property by default by within a Configuration class.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>THIS_IS_A_BEAN_CONFIGURATION_CONFIGURATIONVALUE</code></p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_this_is_my_nested" class="discrete">this.is.my.nested</h3>
+<div class="paragraph">
+<p><strong>Class:</strong> <code>org.rodnansol.TopLevelClassNestedProperty</code></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1112%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Key</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Deprecation</th>
+<th class="tableblock halign-left valign-top">Environment variable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nested-value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nested value.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>THIS_IS_MY_NESTED_NESTEDVALUE</code></p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_this_is_my_first_level_nested_property_second_level_nested_class" class="discrete">this.is.my.first-level-nested-property.second-level-nested-class</h3>
+<div class="paragraph">
+<p><strong>Class:</strong> <code>org.rodnansol.FirstLevelNestedProperty$SecondLevelNestedClass</code></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1112%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Key</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Deprecation</th>
+<th class="tableblock halign-left valign-top">Environment variable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">second-level-value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom nested</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>THIS_IS_MY_FIRSTLEVELNESTEDPROPERTY_SECONDLEVELNESTEDCLASS_SECONDLEVELVALUE</code></p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_this_is_my" class="discrete">this.is.my</h3>
+<div class="paragraph">
+<p><strong>Class:</strong> <code>org.rodnansol.MyProperties</code></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1112%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Key</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Deprecation</th>
+<th class="tableblock halign-left valign-top">Environment variable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">another-variable</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">with default value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reason: null, use for replacement: null</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>THIS_IS_MY_ANOTHERVARIABLE</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.time.LocalDate</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>THIS_IS_MY_DATE</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">date-time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.time.LocalDateTime</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>THIS_IS_MY_DATETIME</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">duration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.time.Duration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A duration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2d</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reason: Because it is deprecated, use for replacement: instant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>THIS_IS_MY_DURATION</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">instant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.time.Instant</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">123</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>THIS_IS_MY_INSTANT</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">variable</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is my variable.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>THIS_IS_MY_VARIABLE</code></p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_this_is_my_first_level_nested_property" class="discrete">this.is.my.first-level-nested-property</h3>
+<div class="paragraph">
+<p><strong>Class:</strong> <code>org.rodnansol.FirstLevelNestedProperty</code></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 11.1111%;">
+<col style="width: 33.3333%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1112%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Key</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Deprecation</th>
+<th class="tableblock halign-left valign-top">Environment variable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">desc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description of this thing.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">123</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>THIS_IS_MY_FIRSTLEVELNESTEDPROPERTY_DESC</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the custom property.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ABC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>THIS_IS_MY_FIRSTLEVELNESTEDPROPERTY_NAME</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details>
+<details>
+<summary class="title">Markdown</summary>
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/standard-document-md.png" alt="image$standard document md">
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect4">
+<h5 id="_compact"><a class="anchor" href="#_compact"></a>Compact</h5>
+<details>
+<summary class="title">AsciiDoc</summary>
+<div class="content">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 12.5%;">
+<col style="width: 37.5%;">
+<col style="width: 12.5%;">
+<col style="width: 12.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Key</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default value</th>
+<th class="tableblock halign-left valign-top">Deprecation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">this.is.your.property</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is YOUR property.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">this.is.a.bean.configuration.configuration-value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A field inside a class that is not property by default by within a Configuration class.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">this.is.my.nested.nested-value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nested value.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">this.is.my.first-level-nested-property.second-level-nested-class.second-level-value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom nested</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">this.is.my.another-variable</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">with default value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reason: null, use for replacement: null</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">this.is.my.date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.time.LocalDate</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">this.is.my.date-time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.time.LocalDateTime</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">this.is.my.duration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.time.Duration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A duration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2d</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reason: Because it is deprecated, use for replacement: instant</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">this.is.my.instant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.time.Instant</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">123</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">this.is.my.variable</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This is my variable.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">this.is.my.first-level-nested-property.desc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description of this thing.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">123</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">this.is.my.first-level-nested-property.name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">java.lang.String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the custom property.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ABC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details>
+<details>
+<summary class="title">Markdown</summary>
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="_images/compact-document-md.png" alt="image$compact document md">
+</div>
+</div>
+</div>
+</details>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_asciidoc_customizations"><a class="anchor" href="#_asciidoc_customizations"></a>AsciiDoc customizations</h3>
@@ -430,7 +896,7 @@ include::file.adoc[]
 </div>
 </div>
 <div class="sect1">
-<h2 id="_custom_templates"><a class="anchor" href="#_custom_templates"></a>Custom templates</h2>
+<h2 id="custom-templates"><a class="anchor" href="#custom-templates"></a>Custom templates</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You are not forced to use our templates, we can understand it is not your taste and maybe the customization options for the provided ones are not that flexible for your (for example the HTML format).</p>
@@ -994,6 +1460,13 @@ For a working example please check the <strong>samples/multi-module</strong> dir
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#content-customization">ContentCustomization</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Configures the customization for the content (tables, property groups and properties)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Check defaults below.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.6.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">templateMode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STANDARD or COMPACT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sets the template mode. Read more about <a href="#template-modes">here</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STANDARD</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.6.0</p></td>
 </tr>
 </tbody>
