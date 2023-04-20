@@ -151,6 +151,7 @@
 <ul class="sectlevel2">
 <li><a href="#_github_action">GitHub Action</a></li>
 <li><a href="#_java_jar">Java JAR</a></li>
+<li><a href="#_jbang">JBang</a></li>
 <li><a href="#_binary">Binary</a></li>
 </ul>
 </li>
@@ -180,7 +181,7 @@
 <div class="sect2">
 <h3 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h3>
 <div class="paragraph">
-<p><a href="https://jbang.dev/">JBang</a> is a tool that let&#8217;s you write Java apps easily, no Maven, no Gradle, just pure Java classes with some small directives as comments in the header.</p>
+<p><a href="https://jbang.dev/">JBang</a> is a tool that lets you write Java apps easily, no Maven, no Gradle, just pure Java classes with some small directives as comments in the header.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -337,8 +338,60 @@ Hello World</code></pre>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_github_action"><a class="anchor" href="#_github_action"></a>GitHub Action</h3>
-<div class="paragraph">
-<p>Coming soon.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: update-catalog
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  update-catalog-documentation:
+    runs-on: ubuntu-latest
+    name: Update catalog documentation
+    if: startsWith(github.event.head_commit.message, 'Updating jbang-catalog documentation') != true
+    steps:
+      - uses: actions/checkout@v3
+      - uses: rodnansol/jbang-catalog-document-generator-action@v0.1.0 <i class="conum" data-value="1"></i><b>(1)</b>
+        name: Generate catalog document
+        with:
+          version: early-access <i class="conum" data-value="2"></i><b>(2)</b>
+          arguments: generate jbang-catalog.json -o README.adoc --custom-header=header.adoc --include-generation-date=true <i class="conum" data-value="3"></i><b>(3)</b>
+      - name: Commit document changes
+        shell: bash
+        run: |
+          git add README.adoc <i class="conum" data-value="4"></i><b>(4)</b>
+          git config --global user.email "${{ secrets.COMMITTER_EMAIL }}"
+          git config --global user.name "${{ secrets.COMMITTER_NAME }}"
+          git commit -m "Updating jbang-catalog documentation" <i class="conum" data-value="5"></i><b>(5)</b>
+          git push origin main</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Add the <code>rodnansol/jbang-catalog-document-generator-action</code> to your action. Check the latest version before doing so.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Specify the version of the CLI tool you want to use.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>By default, the <code>generate jbang-catalog.json</code> command will be executed with, if more customization is needed specify it here</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Do not forget to add it to the staging area</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Commit and then push the files</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -348,19 +401,25 @@ Hello World</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">java -jar jbang-catalog-document-generator-999-SNAPSHOT-runner.jar generate
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">java -jar jbang-catalog-document-generator-cli/target/jbang-catalog-document-generator-cli-999-SNAPSHOT.jar generate
 Missing required parameter: '&lt;inputFile&gt;'
-Usage: &lt;main class&gt; generate [-toc] [-cf=&lt;customFooterFilePath&gt;]
+Usage: &lt;main class&gt; generate [-g] [-cc] [-toc] [-cf=&lt;customFooterFilePath&gt;]
                              [-ch=&lt;customHeaderFilePath&gt;] [-o=&lt;outputFile&gt;]
                              [-t=&lt;customTemplatePath&gt;] [-toc-l=&lt;tocLevels&gt;]
                              [-toc-p=&lt;tocPlacement&gt;] [-toc-t=&lt;tocTitle&gt;]
                              [-tt=&lt;templateType&gt;] &lt;inputFile&gt;
 Generates a documentation for a given jbang-catalog.json file
       &lt;inputFile&gt;   The input JSON file to convert.
+      -cc, --check-checksum
+                    Defines if the checksum check should be running or not.
+                      Checksum check is enabled by default.
       -cf, --custom-footer=&lt;customFooterFilePath&gt;
                     Path to a custom footer.
       -ch, --custom-header=&lt;customHeaderFilePath&gt;
                     Path to a custom header.
+  -g, --include-generation-date
+                    Defines if the generation date should be put into the
+                      document or not.
   -o, --output=&lt;outputFile&gt;
                     The output AsciiDoc file name. Defaults to 'jbang-catalog.
                       adoc'
@@ -377,6 +436,15 @@ Generates a documentation for a given jbang-catalog.json file
       -tt, --template-type=&lt;templateType&gt;
                     Template type.</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jbang"><a class="anchor" href="#_jbang"></a>JBang</h3>
+<div class="paragraph">
+<p>A tool for JBang will not be truly JBang related if it would not be having a JBang script.</p>
+</div>
+<div class="paragraph">
+<p>Check the <strong>jbang</strong> folder for the script or check the releases the use the newly released stable one.</p>
 </div>
 </div>
 <div class="sect2">
