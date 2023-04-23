@@ -153,6 +153,7 @@
 <li><a href="#_java_jar">Java JAR</a></li>
 <li><a href="#_jbang">JBang</a></li>
 <li><a href="#_binary">Binary</a></li>
+<li><a href="#_docker_image">Docker image</a></li>
 </ul>
 </li>
 <li><a href="#_output">Output</a>
@@ -393,6 +394,9 @@ jobs:
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>More information about the action can be found <a href="https://github.com/rodnansol/jbang-catalog-document-generator-action">here</a>.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_java_jar"><a class="anchor" href="#_java_jar"></a>Java JAR</h3>
@@ -402,8 +406,8 @@ jobs:
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">java -jar jbang-catalog-document-generator-cli/target/jbang-catalog-document-generator-cli-999-SNAPSHOT.jar generate
-Missing required parameter: '&lt;inputFile&gt;'
-Usage: &lt;main class&gt; generate [-g] [-cc] [-toc] [-cf=&lt;customFooterFilePath&gt;]
+Usage: &lt;main class&gt; generate [-g] [-cc] [-hfdr] [-toc]
+                             [-cf=&lt;customFooterFilePath&gt;]
                              [-ch=&lt;customHeaderFilePath&gt;] [-o=&lt;outputFile&gt;]
                              [-t=&lt;customTemplatePath&gt;] [-toc-l=&lt;tocLevels&gt;]
                              [-toc-p=&lt;tocPlacement&gt;] [-toc-t=&lt;tocTitle&gt;]
@@ -420,6 +424,10 @@ Generates a documentation for a given jbang-catalog.json file
   -g, --include-generation-date
                     Defines if the generation date should be put into the
                       document or not.
+      -hfdr, --header-footer-direct-render
+                    Defines if the header and footer should be directly
+                      rendered into the document or not. In case of AsciiDoc it
+                      will not use the `include` directive.
   -o, --output=&lt;outputFile&gt;
                     The output AsciiDoc file name. Defaults to 'jbang-catalog.
                       adoc'
@@ -444,11 +452,17 @@ Generates a documentation for a given jbang-catalog.json file
 <p>A tool for JBang will not be truly JBang related if it would not be having a JBang script.</p>
 </div>
 <div class="paragraph">
-<p>Check the <strong>jbang</strong> folder for the script or check the releases the use the newly released stable one.</p>
+<p>Check the <strong><a href="https://github.com/rodnansol/jbang-catalog-document-generator/blob/master/jbang/src/JbangCatalogDocumenter.java">jbang</a></strong> folder for the script or check the <a href="https://github.com/rodnansol/jbang-catalog-document-generator/releases">releases</a> the use the newly released stable one.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_binary"><a class="anchor" href="#_binary"></a>Binary</h3>
+<div class="paragraph">
+<p>Coming soon.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_docker_image"><a class="anchor" href="#_docker_image"></a>Docker image</h3>
 <div class="paragraph">
 <p>Coming soon.</p>
 </div>
