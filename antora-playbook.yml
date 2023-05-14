@@ -14,6 +14,9 @@ content:
     - url: https://github.com/rodnansol/jbang-catalog-document-generator
       start_path: docs
       branches: master
+    - url: https://github.com/rodnansol/commit-teller
+      start_path: docs
+      branches: master
 
 ui:
   bundle:
