@@ -231,13 +231,13 @@ jobs:
           version: early-access <i class="conum" data-value="4"></i><b>(4)</b>
           arguments: create-story -pr ${ISSUE_NUMBER} --owner ${GITHUB_REPOSITORY%/*} --repository ${GITHUB_REPOSITORY#*/} --file-extension ADOC -saf=true <i class="conum" data-value="5"></i><b>(5)</b>
         env: <i class="conum" data-value="6"></i><b>(6)</b>
-          ISSUE_NUMBER: ${{ github.event.issue.number }} <i class="conum" data-value="7"></i><b>(7)</b>
+          ISSUE_NUMBER: ${{ github.event.number }} <i class="conum" data-value="7"></i><b>(7)</b>
           COMMIT_TELLER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} <i class="conum" data-value="8"></i><b>(8)</b>
           COMMIT_TELLER_OPENAI_API_KEY: ${{ secrets.OPENAI_KEY }} <i class="conum" data-value="9"></i><b>(9)</b>
       - name: Commit story changes <i class="conum" data-value="10"></i><b>(10)</b>
         shell: bash
         env:
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_NUMBER: ${{ github.event.number }}
         run: |
           git add *.adoc
           git config --global user.email "${{ secrets.COMMITTER_EMAIL }}"
