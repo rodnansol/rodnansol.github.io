@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Maven Plugin :: Rodnan Sol</title>
     <link rel="canonical" href="https://rodnansol.github.io/spring-configuration-property-documenter/latest/maven-plugin.html">
-    <meta name="generator" content="Antora 3.1.3">
+    <meta name="generator" content="Antora 3.1.4">
     <link rel="stylesheet" href="../../_/css/site.css">
     <meta property="og:url" content="https://rodnansol.github.io/spring-configuration-property-documenter/latest/maven-plugin.html">
         <meta property="og:description" content="A documentation page for Spring Configuration Property Documenter.">
@@ -161,8 +161,8 @@
     <li><a href="maven-plugin.html">Maven Plugin</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/rodnansol/spring-configuration-property-documenter/edit/master/docs/modules/ROOT/pages/maven-plugin.adoc">Edit this Page</a></div>
-  </div>
+<div class="edit-this-page"><a href="https://github.com/rodnansol/spring-configuration-property-documenter/edit/master/docs/modules/ROOT/pages/maven-plugin.adoc">Edit this Page</a></div>
+</div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
@@ -240,10 +240,8 @@
 <div class="paragraph">
 <p>Spring&#8217;s annotation processor will kick in the <code>compile</code> phase, and because of that the plugin must be linked after that lifecycle, for example the <code>process-classes</code>.</p>
 </div>
-<details>
-<summary class="title">pom.xml</summary>
-<div class="content">
 <div class="listingblock">
+<div class="title">pom.xml</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml"> &lt;build&gt;
         &lt;plugins&gt;
@@ -290,8 +288,6 @@
     &lt;/build&gt;</code></pre>
 </div>
 </div>
-</div>
-</details>
 <div class="paragraph">
 <p>In this example 3 files are going to be created with different extensions (Markdown, AsciiDoc, HTML).</p>
 </div>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Spring Configuration Property Documenter :: Rodnan Sol</title>
     <link rel="canonical" href="https://rodnansol.github.io/spring-configuration-property-documenter/latest/index.html">
-    <meta name="generator" content="Antora 3.1.3">
+    <meta name="generator" content="Antora 3.1.4">
     <link rel="stylesheet" href="../../_/css/site.css">
     <meta property="og:url" content="https://rodnansol.github.io/spring-configuration-property-documenter/latest/index.html">
         <meta property="og:description" content="A documentation page for Spring Configuration Property Documenter.">
@@ -160,8 +160,8 @@
     <li><a href="index.html">Homepage</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/rodnansol/spring-configuration-property-documenter/edit/master/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
-  </div>
+<div class="edit-this-page"><a href="https://github.com/rodnansol/spring-configuration-property-documenter/edit/master/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+</div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
@@ -201,6 +201,12 @@
 <li><a href="#_project">Project</a>
 <ul class="sectlevel3">
 <li><a href="#_results">Results</a></li>
+</ul>
+</li>
+<li><a href="#_try_out_quickly_with_maven">Try out quickly with Maven</a>
+<ul class="sectlevel3">
+<li><a href="#_via_direct_plugin_execution">Via direct plugin execution</a></li>
+<li><a href="#_via_minimal_pom_xml_configuration">Via minimal pom.xml configuration</a></li>
 </ul>
 </li>
 </ul>
@@ -384,7 +390,7 @@ class MyProperties {
 <p>styled documents about your configuration properties.</p>
 </div>
 <div class="paragraph">
-<p>The tool is using <a href="https://jknack.github.io/handlebars.java/">Handlebars</a> as the templating engine, if you would like to create custom templates check the <a href="template-customization.html" class="xref page">Template Customization</a> section.</p>
+<p>The tool is using <a href="https://jknack.github.io/handlebars.java/">Handlebars</a> as the templating engine, if you would like to create custom templates check the <a href="template-customization.html" class="xref page">Template customization</a> section.</p>
 </div>
 <div class="paragraph">
 <p>You can use our <a href="maven-plugin.html" class="xref page">Maven</a> plugin or our <a href="gradle-plugin.html" class="xref page">Gradle</a> plugin to utilize the document generation tool.</p>
@@ -453,6 +459,59 @@ If you are using Spring with Quarkus, you can use this tool as well, please chec
 </details>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_try_out_quickly_with_maven"><a class="anchor" href="#_try_out_quickly_with_maven"></a>Try out quickly with Maven</h3>
+<div class="sect3">
+<h4 id="_via_direct_plugin_execution"><a class="anchor" href="#_via_direct_plugin_execution"></a>Via direct plugin execution</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mvn clean package  \
+  org.rodnansol:spring-configuration-property-documenter-maven-plugin:0.6.1:generate-property-document \
+  -Dtype=ADOC</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An Asciidoc based property documentation should be available in your <code>target/property-docs</code> folder.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_via_minimal_pom_xml_configuration"><a class="anchor" href="#_via_minimal_pom_xml_configuration"></a>Via minimal pom.xml configuration</h4>
+<div class="listingblock">
+<div class="title">pom.xml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt;
+    &lt;groupId&gt;org.rodnansol&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-configuration-property-documenter-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;0.6.1&lt;/version&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;id&gt;generate-adoc-without-deprecation-and-type&lt;/id&gt;
+            &lt;phase&gt;process-classes&lt;/phase&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;generate-property-document&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;configuration&gt;
+                &lt;type&gt;ADOC&lt;/type&gt;
+            &lt;/configuration&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Don&#8217;t worry, we have a Gradle plugin as well, check it out <a href="gradle-plugin.html" class="xref page">here</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -504,19 +563,19 @@ If you are using Spring with Quarkus, you can use this tool as well, please chec
 <div class="sect3">
 <h4 id="maven-plugin"><a class="anchor" href="#maven-plugin"></a>spring-configuration-property-documenter-maven-plugin</h4>
 <div class="paragraph">
-<p>This Maven module is a Maven plugin implementation, please check the <a href="maven-plugin.html" class="xref page">Maven Plugin</a> part for the available goals and configuration.</p>
+<p>This Maven module is a Maven plugin implementation, please check the <a href="maven-plugin.html" class="xref page">Maven plugin</a> part for the available goals and configuration.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="jbang-module"><a class="anchor" href="#jbang-module"></a>jbang</h4>
 <div class="paragraph">
-<p>If you are not willing to use the Maven/Gradle plugin (that is coming soon), and you are familiar with JBang you can use this module where a <code>PropertyDocumenter</code> script is resides, to have a new entry point to the tool. Please read the <a href="usage-jbang.html" class="xref page">JBang usage</a> for more information.</p>
+<p>If you are not willing to use the Maven/Gradle plugin (that is coming soon), and you are familiar with JBang you can use this module where a <code>PropertyDocumenter</code> script is resides, to have a new entry point to the tool. Please read the <a href="usage-jbang.html" class="xref page">JBang</a> for more information.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="gradle-plugin"><a class="anchor" href="#gradle-plugin"></a>spring-configuration-property-documenter-gradle-plugin</h4>
 <div class="paragraph">
-<p>This Maven module is a Gradle plugin implementation, please check the <a href="gradle-plugin.html" class="xref page">Gradle Plugin</a> part for the available goals and configuration.</p>
+<p>This Maven module is a Gradle plugin implementation, please check the <a href="gradle-plugin.html" class="xref page">Gradle</a> part for the available goals and configuration.</p>
 </div>
 </div>
 </div>
@@ -533,13 +592,13 @@ If you are using Spring with Quarkus, you can use this tool as well, please chec
 <div class="ulist">
 <ul>
 <li>
-<p><a href="maven-plugin.html" class="xref page">Maven Plugin</a></p>
+<p><a href="maven-plugin.html" class="xref page">Maven plugin</a></p>
 </li>
 <li>
-<p><a href="gradle-plugin.html" class="xref page">Gradle Plugin</a></p>
+<p><a href="gradle-plugin.html" class="xref page">Gradle plugin</a></p>
 </li>
 <li>
-<p><a href="usage-jbang.html" class="xref page">JBang usage</a></p>
+<p><a href="usage-jbang.html" class="xref page">JBang</a></p>
 </li>
 </ul>
 </div>
@@ -549,7 +608,7 @@ If you are using Spring with Quarkus, you can use this tool as well, please chec
 <div class="ulist">
 <ul>
 <li>
-<p><a href="template-customization.html" class="xref page">Template Customization</a></p>
+<p><a href="template-customization.html" class="xref page">Template customization</a></p>
 </li>
 </ul>
 </div>
