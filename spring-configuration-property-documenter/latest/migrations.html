@@ -14,7 +14,6 @@
     <meta property="og:title" content="Spring Configuration Property Documenter - Migrations">
     <meta property="og:image" content="https://rodnansol.github.io/_images/rodnan-sol-logo.png">
     <meta name="twitter:site" content="@rodnansol">
-    <script>var uiRootPath = '../../_'</script>
     <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
   </head>
   <body class="article">
@@ -170,7 +169,131 @@
 <article class="doc">
 <h1 class="page">Migrations</h1>
 <div class="sect1">
-<h2 id="_0_5_1_0_6_0"><a class="anchor" href="#_0_5_1_0_6_0"></a>0.5.1 &#8594; 0.6.0</h2>
+<h2 id="version-0-7-0"><a class="anchor" href="#version-0-7-0"></a>0.6.0 &#8594; 0.7.0</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before the 0.7.0 version in case any of the input files during the <code>generate-and-aggregate-documents</code> Maven goal or <code>generateAndAggregateDocuments</code> Gradle task was missing the documentation was created but the missing elements were not rendered into the document, because there was nothing to be read.</p>
+</div>
+<div class="paragraph">
+<p>With the release of the 0.7.0 this changes and the build will fail, but it can be parametrized for both available goals/tasks.</p>
+</div>
+<div class="paragraph">
+<p>Maven goals:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>generate-property-document</p>
+</li>
+<li>
+<p>generate-and-aggregate-documents</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Gradle tasks:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>generatePropertyDocument</p>
+</li>
+<li>
+<p>generateAndAggregateDocuments</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_maven"><a class="anchor" href="#_maven"></a>Maven</h3>
+<div class="listingblock">
+<div class="title">pom.xml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;executions&gt;
+    &lt;execution&gt;
+        &lt;id&gt;generate-adoc&lt;/id&gt;
+        &lt;phase&gt;process-classes&lt;/phase&gt;
+        &lt;goals&gt;
+            &lt;goal&gt;generate-property-document&lt;/goal&gt;
+        &lt;/goals&gt;
+        &lt;configuration&gt;
+            &lt;type&gt;TYPE&lt;/type&gt;
+            &lt;!--Set to true if the build should fail if the input file is missing, set to false if it should generate an empty document--&gt;
+            &lt;failOnMissingInput&gt;true&lt;/failOnMissingInput&gt;
+        &lt;/configuration&gt;
+    &lt;/execution&gt;
+    &lt;execution&gt;
+        &lt;id&gt;generate-adoc&lt;/id&gt;
+        &lt;phase&gt;process-classes&lt;/phase&gt;
+        &lt;goals&gt;
+            &lt;goal&gt;generate-and-aggregate-documents&lt;/goal&gt;
+        &lt;/goals&gt;
+        &lt;configuration&gt;
+            &lt;type&gt;TYPE&lt;/type&gt;
+            &lt;!--Set to true if the build should fail if the input file is missing, set to false if it should generate an empty document--&gt;
+            &lt;failOnMissingInput&gt;true&lt;/failOnMissingInput&gt;
+        &lt;/configuration&gt;
+    &lt;/execution&gt;
+&lt;/executions&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gradle"><a class="anchor" href="#_gradle"></a>Gradle</h3>
+<div class="listingblock">
+<div class="title">gradle.build</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">tasks.register('generateAdoc') {
+    dependsOn generatePropertyDocument {
+        failOnMissingInput = true // Will fail if input is missing
+        documentName = "Hello World"
+        type = "ADOC"
+        asciiDocCustomization {
+            contentCustomization {
+                includeEnvFormat = true
+                includeClass = false
+                includeDeprecation = false
+                includeDescription = false
+            }
+            unknownGroupLocalization = "Renamed unknown group"
+            tocLevels = 3
+        }
+    }
+}
+
+tasks.register('generateAdocFromMissingInputFile') {
+    dependsOn generatePropertyDocument {
+        failOnMissingInput = false // Won't fail if input is missing, and empty file will be made
+        metadataInput = new File("non-existing.json")
+        outputFile = new File("build/property-docs/non-existing-file.adoc")
+        documentName = "Hello World"
+        type = "ADOC"
+        asciiDocCustomization {
+            contentCustomization {
+                includeEnvFormat = true
+                includeClass = false
+                includeDeprecation = false
+                includeDescription = false
+            }
+            unknownGroupLocalization = "Renamed unknown group"
+            tocLevels = 3
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-0-6-1"><a class="anchor" href="#version-0-6-1"></a>0.6.0 &#8594; 0.6.1</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>No changes required.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="version-0-6-0"><a class="anchor" href="#version-0-6-0"></a>0.5.1 &#8594; 0.6.0</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_including_environment_format"><a class="anchor" href="#_including_environment_format"></a>Including environment format</h3>
@@ -181,7 +304,7 @@
 <p>A new level of configuration is introduced, it can be configured with the <code>contentCustomization</code> key in Maven and in Gradle.</p>
 </div>
 <div class="sect3">
-<h4 id="_maven"><a class="anchor" href="#_maven"></a>Maven</h4>
+<h4 id="_maven_2"><a class="anchor" href="#_maven_2"></a>Maven</h4>
 <div class="listingblock">
 <div class="title">Till 0.5.1</div>
 <div class="content">
@@ -250,7 +373,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="_gradle"><a class="anchor" href="#_gradle"></a>Gradle</h4>
+<h4 id="_gradle_2"><a class="anchor" href="#_gradle_2"></a>Gradle</h4>
 <div class="listingblock">
 <div class="title">Till 0.5.1</div>
 <div class="content">
@@ -352,7 +475,7 @@ tasks.register('generateXml') {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_0_5_0_0_5_1"><a class="anchor" href="#_0_5_0_0_5_1"></a>0.5.0 &#8594; 0.5.1</h2>
+<h2 id="version-0-5-1"><a class="anchor" href="#version-0-5-1"></a>0.5.0 &#8594; 0.5.1</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>No changes required.</p>
@@ -360,7 +483,7 @@ tasks.register('generateXml') {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_0_4_0_0_5_0"><a class="anchor" href="#_0_4_0_0_5_0"></a>0.4.0 &#8594; 0.5.0</h2>
+<h2 id="version-0-5-0"><a class="anchor" href="#version-0-5-0"></a>0.4.0 &#8594; 0.5.0</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>No changes required.</p>
@@ -368,7 +491,7 @@ tasks.register('generateXml') {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_0_3_0_0_4_0"><a class="anchor" href="#_0_3_0_0_4_0"></a>0.3.0 &#8594; 0.4.0</h2>
+<h2 id="version-0-4-0"><a class="anchor" href="#version-0-4-0"></a>0.3.0 &#8594; 0.4.0</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>No changes required.</p>
@@ -376,7 +499,7 @@ tasks.register('generateXml') {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_0_2_4_0_3_0"><a class="anchor" href="#_0_2_4_0_3_0"></a>0.2.4 &#8594; 0.3.0</h2>
+<h2 id="version-0-3-0"><a class="anchor" href="#version-0-3-0"></a>0.2.4 &#8594; 0.3.0</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>No changes required.</p>
@@ -384,7 +507,7 @@ tasks.register('generateXml') {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_0_2_3_0_2_4"><a class="anchor" href="#_0_2_3_0_2_4"></a>0.2.3 &#8594; 0.2.4</h2>
+<h2 id="version-0-2-4"><a class="anchor" href="#version-0-2-4"></a>0.2.3 &#8594; 0.2.4</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>No changes required.</p>
@@ -392,7 +515,7 @@ tasks.register('generateXml') {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_0_2_2_0_2_3"><a class="anchor" href="#_0_2_2_0_2_3"></a>0.2.2 &#8594; 0.2.3</h2>
+<h2 id="version-0-2-3"><a class="anchor" href="#version-0-2-3"></a>0.2.2 &#8594; 0.2.3</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>No changes required.</p>
@@ -400,7 +523,7 @@ tasks.register('generateXml') {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_0_2_1_0_2_2"><a class="anchor" href="#_0_2_1_0_2_2"></a>0.2.1 &#8594; 0.2.2</h2>
+<h2 id="version-0-2-2"><a class="anchor" href="#version-0-2-2"></a>0.2.1 &#8594; 0.2.2</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>No changes required.</p>
@@ -408,7 +531,7 @@ tasks.register('generateXml') {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_0_2_0_0_2_1"><a class="anchor" href="#_0_2_0_0_2_1"></a>0.2.0 &#8594; 0.2.1</h2>
+<h2 id="version-0-2-1"><a class="anchor" href="#version-0-2-1"></a>0.2.0 &#8594; 0.2.1</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>No changes required.</p>
@@ -416,7 +539,7 @@ tasks.register('generateXml') {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_0_1_1_0_2_0"><a class="anchor" href="#_0_1_1_0_2_0"></a>0.1.1 &#8594; 0.2.0</h2>
+<h2 id="version-0-2-0"><a class="anchor" href="#version-0-2-0"></a>0.1.1 &#8594; 0.2.0</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>No changes required.</p>
@@ -424,7 +547,7 @@ tasks.register('generateXml') {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_0_1_0_0_1_1"><a class="anchor" href="#_0_1_0_0_1_1"></a>0.1.0 &#8594; 0.1.1</h2>
+<h2 id="version-0-1-1"><a class="anchor" href="#version-0-1-1"></a>0.1.0 &#8594; 0.1.1</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>No changes required.</p>
